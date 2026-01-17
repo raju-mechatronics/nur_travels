@@ -195,7 +195,6 @@ documentItems.forEach(item => {
 });
 
 // Navbar scroll effect
-let lastScroll = 0;
 const header = document.querySelector('.header');
 
 window.addEventListener('scroll', () => {
@@ -206,8 +205,6 @@ window.addEventListener('scroll', () => {
     } else {
         header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
     }
-    
-    lastScroll = currentScroll;
 });
 
 // Add fade-in animation on scroll
@@ -236,6 +233,3 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 });
-
-// Initialize
-console.log('Nur Travels website loaded successfully!');
