@@ -1,3 +1,36 @@
+// Toast Notification Function
+function showToast(message, type = 'info') {
+    // Remove any existing toasts
+    const existingToast = document.querySelector('.toast');
+    if (existingToast) {
+        existingToast.remove();
+    }
+    
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    
+    const icon = type === 'success' ? 'fa-check-circle' : 'fa-info-circle';
+    
+    toast.innerHTML = `
+        <div class="toast-content">
+            <i class="fas ${icon} toast-icon"></i>
+            <div class="toast-message">${message}</div>
+        </div>
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Trigger animation
+    setTimeout(() => toast.classList.add('show'), 10);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 5000);
+}
+
 // Mobile Menu Toggle
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
@@ -94,7 +127,7 @@ if (contactForm) {
         
         if (isValid) {
             // Show success message
-            alert('Thank you for your message! We will get back to you soon.');
+            showToast('Thank you for your message! We will get back to you soon.', 'success');
             contactForm.reset();
         }
     });
@@ -121,7 +154,7 @@ const jobCategoryButtons = document.querySelectorAll('.job-category-btn');
 jobCategoryButtons.forEach(button => {
     button.addEventListener('click', function() {
         const jobType = this.querySelector('span').textContent;
-        alert(`Interested in ${jobType}? Please fill out the contact form and mention this position.`);
+        showToast(`Interested in ${jobType}? Please fill out the contact form below.`, 'info');
         
         // Scroll to contact form
         const contactSection = document.getElementById('contact');
@@ -151,7 +184,7 @@ const documentItems = document.querySelectorAll('.documents-list li');
 documentItems.forEach(item => {
     item.addEventListener('click', function() {
         const docName = this.querySelector('span').textContent;
-        alert(`${docName} - Please prepare this document for your application. Contact us for specific requirements.`);
+        showToast(`${docName} - Please prepare this document for your application. Contact us for specific requirements.`, 'info');
     });
 });
 
