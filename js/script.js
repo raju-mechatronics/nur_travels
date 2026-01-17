@@ -1,3 +1,9 @@
+// Helper function to check reduced motion preference
+function getScrollBehavior() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    return prefersReducedMotion ? 'auto' : 'smooth';
+}
+
 // Toast Notification Function
 function showToast(message, type = 'info') {
     // Remove any existing toasts
@@ -72,7 +78,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
             window.scrollTo({
                 top: offsetPosition,
-                behavior: 'smooth'
+                behavior: getScrollBehavior()
             });
         }
     });
@@ -165,7 +171,7 @@ jobCategoryButtons.forEach(button => {
 
             window.scrollTo({
                 top: offsetPosition,
-                behavior: 'smooth'
+                behavior: getScrollBehavior()
             });
             
             // Pre-fill message if job category is clicked
